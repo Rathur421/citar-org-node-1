@@ -173,12 +173,11 @@ The returned function, when given a citekey, will return non-nil if
 there's an associated note.
 
 See also `citar-org-node-notes-config'."
-  (let ((hasnotes (make-hash-table :test 'equal))
-        (citekeys (hash-table-keys (citar-org-node--get-citekey-refs))))
-    (dolist (citekey citekeys)
+  (let ((hasnotes (make-hash-table :test 'equal)))
+    (dolist (citekey (org-mem-all-roam-refs))
       (puthash citekey t hasnotes))
-    (lambda (citekey)
-      (gethash citekey hasnotes))))
+    (lambda (ref-path)
+      (gethash (concat "@" ref-path) hasnotes))))
 
 (defun citar-org-node-open-note (candidate-string)
   "Open org-node node for CANDIDATE-STRING.
