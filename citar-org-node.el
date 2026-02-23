@@ -195,7 +195,7 @@ See also `citar-org-node-notes-config'."
   ;; first space
   (let ((id (substring-no-properties
              (car (split-string candidate-string)))))
-    (org-node--goto (org-mem-entry-by-id id))))
+    (org-node-goto (org-mem-entry-by-id id))))
 
 (defun citar-org-node--available-org-capture-key ()
   "Returns a key available for being bound in the `org-capture' menu.
